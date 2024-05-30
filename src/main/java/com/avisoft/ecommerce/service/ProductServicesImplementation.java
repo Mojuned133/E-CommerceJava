@@ -7,6 +7,7 @@ import com.avisoft.ecommerce.repository.CategoryRepository;
 import com.avisoft.ecommerce.repository.ProductRepository;
 import com.avisoft.ecommerce.request.CreateProductRequest;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -135,7 +136,18 @@ public class ProductServicesImplementation implements ProductService {
             if(stock.equals("in_stock")){
                 products=products.stream().filter(p->p.getQuantity()>0).collect(Collectors.toList());
             }
+            else if(stock.equals("out_of_stock")){
+                products=products.stream().filter(p->p.getQuantity()<1).collect(Collectors.toList());
+            }
         }
-        return null;
+
+        int  startIndex=(int)pageable.getOffset();
+        int endIndex=Math.min(startIndex+pageable.getPageSize(), products.size());
+
+
+        List<Product>pageContent=products.subList(startIndex,endIndex);
+
+        Page<Product>filteredProducts= new PageImpl<>(pageContent,pageable, products.size());
+        return filteredProducts;
     }
 }
