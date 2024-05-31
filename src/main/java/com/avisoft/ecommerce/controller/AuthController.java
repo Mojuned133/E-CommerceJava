@@ -2,10 +2,12 @@ package com.avisoft.ecommerce.controller;
 
 import com.avisoft.ecommerce.config.JwtProvider;
 import com.avisoft.ecommerce.exception.UserException;
+import com.avisoft.ecommerce.model.Cart;
 import com.avisoft.ecommerce.model.User;
 import com.avisoft.ecommerce.repository.UserRepository;
 import com.avisoft.ecommerce.request.LoginRequest;
 import com.avisoft.ecommerce.responce.AuthResponse;
+import com.avisoft.ecommerce.service.CartService;
 import com.avisoft.ecommerce.service.CustomUserServiceImplementation;
 import org.aspectj.bridge.IMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +35,23 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
 
     private CustomUserServiceImplementation customUserService;
+
+
+    private CartService cartService;
+
+
     public AuthController(UserRepository userRepository,
                           CustomUserServiceImplementation customUserService,
                           PasswordEncoder passwordEncoder,
-                          JwtProvider jwtProvider
+                          JwtProvider jwtProvider,
+                          CartService cartService
                             ){
         //todo something
         this.userRepository=userRepository;
         this.customUserService=customUserService;
         this.passwordEncoder=passwordEncoder;
         this.jwtProvider=jwtProvider;
+        this.cartService=cartService;
     }
 
 
@@ -75,6 +84,8 @@ public class AuthController {
         createdUser.setLastName(lastName);
 
         User savedUser=userRepository.save(createdUser);
+        Cart cart=cartService.createCart(savedUser);
+
 
         Authentication authentication=new UsernamePasswordAuthenticationToken(savedUser.getEmail(),savedUser.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
