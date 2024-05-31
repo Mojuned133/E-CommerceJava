@@ -29,7 +29,7 @@ public interface OrderService {
 
 
 
-    public Order cancledOrder(Long orderId) throws OrderException;
+    public Order canceledOrder(Long orderId) throws OrderException;
 
 
 
