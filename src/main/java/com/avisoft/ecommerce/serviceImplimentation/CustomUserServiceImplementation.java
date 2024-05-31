@@ -1,4 +1,4 @@
-package com.avisoft.ecommerce.service;
+package com.avisoft.ecommerce.serviceImplimentation;
 
 import com.avisoft.ecommerce.model.User;
 import com.avisoft.ecommerce.repository.UserRepository;

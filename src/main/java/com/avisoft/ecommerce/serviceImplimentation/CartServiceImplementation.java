@@ -1,4 +1,4 @@
-package com.avisoft.ecommerce.service;
+package com.avisoft.ecommerce.serviceImplimentation;
 
 
 import com.avisoft.ecommerce.exception.ProductException;
@@ -8,6 +8,9 @@ import com.avisoft.ecommerce.model.Product;
 import com.avisoft.ecommerce.model.User;
 import com.avisoft.ecommerce.repository.CartRepository;
 import com.avisoft.ecommerce.request.AddItemRequest;
+import com.avisoft.ecommerce.service.CartItemService;
+import com.avisoft.ecommerce.service.CartService;
+import com.avisoft.ecommerce.service.ProductService;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package com.avisoft.ecommerce.service;
+package com.avisoft.ecommerce.serviceImplimentation;
 
 import com.avisoft.ecommerce.exception.ProductException;
 import com.avisoft.ecommerce.model.Product;
@@ -6,6 +6,8 @@ import com.avisoft.ecommerce.model.Rating;
 import com.avisoft.ecommerce.model.User;
 import com.avisoft.ecommerce.repository.RatingRepository;
 import com.avisoft.ecommerce.request.RatingRequest;
+import com.avisoft.ecommerce.service.ProductService;
+import com.avisoft.ecommerce.service.RatingService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

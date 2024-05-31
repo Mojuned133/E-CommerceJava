@@ -1,4 +1,4 @@
-package com.avisoft.ecommerce.service;
+package com.avisoft.ecommerce.serviceImplimentation;
 
 import com.avisoft.ecommerce.exception.ProductException;
 import com.avisoft.ecommerce.model.Category;
@@ -6,6 +6,8 @@ import com.avisoft.ecommerce.model.Product;
 import com.avisoft.ecommerce.repository.CategoryRepository;
 import com.avisoft.ecommerce.repository.ProductRepository;
 import com.avisoft.ecommerce.request.CreateProductRequest;
+import com.avisoft.ecommerce.service.ProductService;
+import com.avisoft.ecommerce.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;

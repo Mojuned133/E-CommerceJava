@@ -1,4 +1,4 @@
-package com.avisoft.ecommerce.service;
+package com.avisoft.ecommerce.serviceImplimentation;
 
 
 import com.avisoft.ecommerce.exception.CartItemException;
@@ -9,6 +9,8 @@ import com.avisoft.ecommerce.model.Product;
 import com.avisoft.ecommerce.model.User;
 import com.avisoft.ecommerce.repository.CartItemRepository;
 import com.avisoft.ecommerce.repository.CartRepository;
+import com.avisoft.ecommerce.service.CartItemService;
+import com.avisoft.ecommerce.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -42,7 +44,7 @@ public class CartItemServiceImplementation implements CartItemService {
         cartItem.setQuantity(1);
         cartItem.setPrice(cartItem.getProduct().getPrice()*cartItem.getQuantity());
         cartItem.setDiscountedPrice(cartItem.getProduct().getDiscountedPrice()*cartItem.getQuantity());
-         CartItem createdCartItem=cartItemRepository.save(cartItem);
+        CartItem createdCartItem=cartItemRepository.save(cartItem);
 
          return createdCartItem;
     }

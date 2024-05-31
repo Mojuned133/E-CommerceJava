@@ -1,4 +1,4 @@
-package com.avisoft.ecommerce.service;
+package com.avisoft.ecommerce.serviceImplimentation;
 
 import com.avisoft.ecommerce.exception.ProductException;
 import com.avisoft.ecommerce.model.Product;
@@ -7,13 +7,15 @@ import com.avisoft.ecommerce.model.User;
 import com.avisoft.ecommerce.repository.ProductRepository;
 import com.avisoft.ecommerce.repository.ReviewRepository;
 import com.avisoft.ecommerce.request.ReviewRequest;
+import com.avisoft.ecommerce.service.ProductService;
+import com.avisoft.ecommerce.service.ReviewService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class ReviewServiceImplementation implements ReviewService{
+public class ReviewServiceImplementation implements ReviewService {
 
 
     private ReviewRepository reviewRepository;

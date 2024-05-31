@@ -1,4 +1,4 @@
-package com.avisoft.ecommerce.service;
+package com.avisoft.ecommerce.serviceImplimentation;
 
 
 import com.avisoft.ecommerce.exception.OrderException;
@@ -6,12 +6,15 @@ import com.avisoft.ecommerce.model.Address;
 import com.avisoft.ecommerce.model.Order;
 import com.avisoft.ecommerce.model.User;
 import com.avisoft.ecommerce.repository.CartRepository;
+import com.avisoft.ecommerce.service.CartService;
+import com.avisoft.ecommerce.service.OrderService;
+import com.avisoft.ecommerce.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class OrderServiceImplementation  implements OrderService{
+public class OrderServiceImplementation  implements OrderService {
 
     private CartRepository cartRepository;
     private CartService cartService;
