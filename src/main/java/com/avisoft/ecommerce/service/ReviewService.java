@@ -8,7 +8,7 @@ import com.avisoft.ecommerce.request.ReviewRequest;
 import java.util.List;
 
 public interface ReviewService {
-    public Review createReview(ReviewRequest req, User user)throws ProductException;
+    public Review createReview(ReviewRequest req, User user) throws ProductException;
 
-    public List<Review>getAllReview(Long productId);
+    public List<Review> getAllReview(Long productId);
 }

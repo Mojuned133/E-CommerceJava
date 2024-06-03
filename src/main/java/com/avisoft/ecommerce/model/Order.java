@@ -15,7 +15,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name="order_id")
+    @Column(name = "order_id")
     private String orderId;
 
     @ManyToOne
@@ -23,8 +23,7 @@ public class Order {
 
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderItem>orderItems=new ArrayList<>();
-
+    private List<OrderItem> orderItems = new ArrayList<>();
 
 
     private LocalDateTime orderDate;
@@ -38,8 +37,7 @@ public class Order {
 
 
     @Embedded
-    private PaymentDetails paymentDetails=new PaymentDetails();
-
+    private PaymentDetails paymentDetails = new PaymentDetails();
 
 
     private double totalPrice;
@@ -57,8 +55,7 @@ public class Order {
     private LocalDateTime createdAt;
 
 
-
-    public Order(){
+    public Order() {
 
     }
 

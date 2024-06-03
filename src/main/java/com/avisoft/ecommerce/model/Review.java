@@ -30,9 +30,7 @@ public class Review {
     private LocalDateTime createdAt;
 
 
-
-
-    public Review(){
+    public Review() {
 
     }
 

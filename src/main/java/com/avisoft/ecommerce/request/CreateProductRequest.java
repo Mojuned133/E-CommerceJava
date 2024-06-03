@@ -15,14 +15,14 @@ public class CreateProductRequest {
     private int quantity;
     private String brand;
     private String color;
-    private Set<Size>size=new HashSet<>();
+    private Set<Size> size = new HashSet<>();
     private String imageUrl;
     private String topLavelCategory;
     private String secondLavelCategory;
     private String thirdLavelCategory;
 
 
-    public CreateProductRequest(){
+    public CreateProductRequest() {
 
     }
 

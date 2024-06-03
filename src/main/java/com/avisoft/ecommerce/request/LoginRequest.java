@@ -9,9 +9,10 @@ public class LoginRequest {
         return email;
     }
 
-    public LoginRequest(){
+    public LoginRequest() {
 
     }
+
     public void setEmail(String email) {
         this.email = email;
     }

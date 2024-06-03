@@ -13,7 +13,7 @@ public class Category {
     private Long id;
 
 
-//    @Size(max = 50)
+    //    @Size(max = 50)
     @NotNull
     private String name;
 
@@ -26,8 +26,7 @@ public class Category {
     private int level;
 
 
-
-    public Category(){
+    public Category() {
 
     }
 
@@ -70,7 +69,6 @@ public class Category {
     public void setLevel(int level) {
         this.level = level;
     }
-
 
 
 }

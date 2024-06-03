@@ -43,54 +43,49 @@ public class AuthController {
                           PasswordEncoder passwordEncoder,
                           JwtProvider jwtProvider,
                           CartService cartService
-                            ){
+    ) {
         //todo something
-        this.userRepository=userRepository;
-        this.customUserService=customUserService;
-        this.passwordEncoder=passwordEncoder;
-        this.jwtProvider=jwtProvider;
-        this.cartService=cartService;
+        this.userRepository = userRepository;
+        this.customUserService = customUserService;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtProvider = jwtProvider;
+        this.cartService = cartService;
     }
 
 
-
-
-
     @PostMapping("/signup")
-    public ResponseEntity<AuthResponse>createUserhandler(@RequestBody User user)throws UserException{
+    public ResponseEntity<AuthResponse> createUserhandler(@RequestBody User user) throws UserException {
 
 
+        String email = user.getEmail();
+        String password = user.getPassword();
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
 
 
-        String email= user.getEmail();
-        String password= user.getPassword();
-        String firstName= user.getFirstName();
-        String lastName= user.getLastName();
+        User isEmailExist = userRepository.findByEmail(email);
 
-
-        User isEmailExist=userRepository.findByEmail(email);
-
-        if(isEmailExist!=null){
+        if (isEmailExist != null) {
             throw new UserException("email is already used with another account");
         }
 
 
-        User createdUser=new User();
+        User createdUser = new User();
         createdUser.setEmail(email);
         createdUser.setPassword(passwordEncoder.encode(password));
         createdUser.setFirstName(firstName);
         createdUser.setLastName(lastName);
 
-        User savedUser=userRepository.save(createdUser);
-        Cart cart=cartService.createCart(savedUser);
+        User savedUser = userRepository.save(createdUser);
+        Cart cart = cartService.createCart(savedUser);
 
 
-        Authentication authentication=new UsernamePasswordAuthenticationToken(savedUser.getEmail(),savedUser.getPassword());
+        Authentication authentication = new UsernamePasswordAuthenticationToken(savedUser.getEmail(), savedUser.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String token=jwtProvider.generateToken(authentication);
+        String token = jwtProvider.generateToken(authentication);
 
-        AuthResponse authResponse=new AuthResponse();
+        AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(token);
         authResponse.setMessage("Signup Successful");
 
@@ -99,18 +94,18 @@ public class AuthController {
 
 
     @PostMapping("/signin")
-    public ResponseEntity<AuthResponse>loginUserHandler(@RequestBody LoginRequest loginRequest){
+    public ResponseEntity<AuthResponse> loginUserHandler(@RequestBody LoginRequest loginRequest) {
 
-        String username=loginRequest.getEmail();
-        String password=loginRequest.getPassword();
+        String username = loginRequest.getEmail();
+        String password = loginRequest.getPassword();
 
-        Authentication authentication=authenticate(username,password);
+        Authentication authentication = authenticate(username, password);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String token=jwtProvider.generateToken(authentication);
+        String token = jwtProvider.generateToken(authentication);
 
-        AuthResponse authResponse=new AuthResponse();
+        AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(token);
         authResponse.setMessage("SignIn Successful");
 
@@ -119,16 +114,15 @@ public class AuthController {
     }
 
 
-
     private Authentication authenticate(String username, String password) {
-        UserDetails userDetails= customUserService.loadUserByUsername(username);
-        if(userDetails==null){
+        UserDetails userDetails = customUserService.loadUserByUsername(username);
+        if (userDetails == null) {
             throw new BadCredentialsException("You have enterd bad credentials");
         }
 
-        if(!passwordEncoder.matches(password,userDetails.getPassword())){
+        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
             throw new BadCredentialsException("Invalid password");
         }
-        return new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 }

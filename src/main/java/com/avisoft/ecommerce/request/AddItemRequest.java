@@ -11,12 +11,9 @@ public class AddItemRequest {
     private Integer price;
 
 
-    public AddItemRequest(){
+    public AddItemRequest() {
 
     }
-
-
-
 
 
     public Long getProductId() {

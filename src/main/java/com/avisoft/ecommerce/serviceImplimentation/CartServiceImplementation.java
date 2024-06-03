@@ -24,43 +24,41 @@ public class CartServiceImplementation implements CartService {
 
     public CartServiceImplementation(CartRepository cartRepository,
                                      CartItemService cartItemService,
-                                     ProductService productService){
+                                     ProductService productService) {
 
-        this.cartItemService=cartItemService;
-        this.cartRepository=cartRepository;
-        this.productService=productService;
+        this.cartItemService = cartItemService;
+        this.cartRepository = cartRepository;
+        this.productService = productService;
 
     }
 
 
-
-
     @Override
     public Cart createCart(User user) {
-        Cart cart=new Cart();
+        Cart cart = new Cart();
         cart.setUser(user);
         return cartRepository.save(cart);
     }
 
     @Override
     public String addCartItem(Long userId, AddItemRequest req) throws ProductException {
-        Cart cart=cartRepository.findByUserId(userId);
-        Product product=productService.findProductById(req.getProductId());
+        Cart cart = cartRepository.findByUserId(userId);
+        Product product = productService.findProductById(req.getProductId());
 
-        CartItem isPresent=cartItemService.isCartItemExist(cart,product, req.getSize(), userId);
+        CartItem isPresent = cartItemService.isCartItemExist(cart, product, req.getSize(), userId);
 
-        if(isPresent==null){
-            CartItem cartItem=new CartItem();
+        if (isPresent == null) {
+            CartItem cartItem = new CartItem();
             cartItem.setProduct(product);
             cartItem.setCart(cart);
             cartItem.setQuantity(req.getQuantity());
             cartItem.setUserId(userId);
 
-            int price=req.getQuantity()*product.getDiscountedPrice();
+            int price = req.getQuantity() * product.getDiscountedPrice();
             cartItem.setPrice(price);
             cartItem.setSize(req.getSize());
 
-            CartItem createdCartItem=cartItemService.createCartItem(cartItem);
+            CartItem createdCartItem = cartItemService.createCartItem(cartItem);
             cart.getCartItems().add(createdCartItem);
         }
 
@@ -70,20 +68,20 @@ public class CartServiceImplementation implements CartService {
 
     @Override
     public Cart findUserCart(Long userId) {
-        Cart cart=cartRepository.findByUserId(userId);
+        Cart cart = cartRepository.findByUserId(userId);
 
-        int totalPrice=0;
-        int totalDiscountedPrice=0;
-        int totalItem=0;
+        int totalPrice = 0;
+        int totalDiscountedPrice = 0;
+        int totalItem = 0;
 
-        for(CartItem cartItem:cart.getCartItems()){
-            totalPrice+=cartItem.getPrice();
-            totalDiscountedPrice+=cartItem.getDiscountedPrice();
-            totalItem+=cartItem.getQuantity();
+        for (CartItem cartItem : cart.getCartItems()) {
+            totalPrice += cartItem.getPrice();
+            totalDiscountedPrice += cartItem.getDiscountedPrice();
+            totalItem += cartItem.getQuantity();
         }
         cart.setTotalDiscountedPrice(totalDiscountedPrice);
         cart.setTotalItem(totalItem);
-        cart.setDiscounte(totalPrice-totalDiscountedPrice);
+        cart.setDiscounte(totalPrice - totalDiscountedPrice);
 
 
         return cartRepository.save(cart);

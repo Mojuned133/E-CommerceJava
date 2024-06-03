@@ -8,11 +8,7 @@ import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 
-public interface ReviewRepository extends JpaRepository<Review,Long> {
-
-//    @Query("SELECT r From Review r where r.product.id=:productId")
-//    public List<Review>getAllProductsReview(@Param("productId")Long productId);
-
+public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query("SELECT r FROM Review r WHERE r.product.id = :productId")
     public List<Review> getAllProductsReview(@Param("productId") Long productId);
 

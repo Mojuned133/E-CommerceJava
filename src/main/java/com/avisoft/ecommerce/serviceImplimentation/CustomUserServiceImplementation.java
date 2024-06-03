@@ -14,24 +14,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CustomUserServiceImplementation implements UserDetailsService  {
+public class CustomUserServiceImplementation implements UserDetailsService {
 
     private UserRepository userRepository;
 
-    public CustomUserServiceImplementation(UserRepository userRepository){
+    public CustomUserServiceImplementation(UserRepository userRepository) {
 
-        this.userRepository=userRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userRepository.findByEmail(username);
-        if(user==null){
-            throw new UsernameNotFoundException("user not found with email-"+username);
+        if (user == null) {
+            throw new UsernameNotFoundException("user not found with email-" + username);
         }
-        List<GrantedAuthority>authorities=new ArrayList<>();
+        List<GrantedAuthority> authorities = new ArrayList<>();
 
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),authorities);
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
     }
 }

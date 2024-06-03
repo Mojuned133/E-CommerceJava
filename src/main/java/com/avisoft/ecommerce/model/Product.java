@@ -17,21 +17,21 @@ public class Product {
     private Long id;
 
 
-    @Column(name="titel")
+    @Column(name = "titel")
     private String title;
 
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
 
-    @Column(name="price")
+    @Column(name = "price")
     private int price;
 
 
-    @Column(name="discount_persent")
+    @Column(name = "discount_persent")
     private int discountPersent;
 
-    @Column(name ="discounted_price")
+    @Column(name = "discounted_price")
     private int discountedPrice;
 
 
@@ -47,36 +47,34 @@ public class Product {
     private String color;
 
 
-
     @Embedded
     @ElementCollection
     @Column(name = "sizes")
-    private Set<Size> sizes=new HashSet<>();
+    private Set<Size> sizes = new HashSet<>();
 
 
     @Column(name = "image_url")
     private String imageUrl;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Rating>ratings=new ArrayList<>();
-
+    private List<Rating> ratings = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review>reviews=new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
 
     @Column(name = "num_ratings")
     private int numRatings;
 
     @ManyToOne()
-    @JoinColumn(name="category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
 
     private LocalDateTime createdAt;
 
 
-    public Product(){
+    public Product() {
 
     }
 
@@ -85,14 +83,13 @@ public class Product {
     }
 
 
-
-    public Product(Long id, String title, String description, int price, int discountPersent,int discountedPrice, int quantity, String brand, String color, Set<Size> sizes, String imageUrl, List<Rating> ratings, List<Review> reviews, int numRatings, Category category, LocalDateTime createdAt) {
+    public Product(Long id, String title, String description, int price, int discountPersent, int discountedPrice, int quantity, String brand, String color, Set<Size> sizes, String imageUrl, List<Rating> ratings, List<Review> reviews, int numRatings, Category category, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
         this.discountPersent = discountPersent;
-        this.discountedPrice=discountedPrice;
+        this.discountedPrice = discountedPrice;
         this.quantity = quantity;
         this.brand = brand;
         this.color = color;

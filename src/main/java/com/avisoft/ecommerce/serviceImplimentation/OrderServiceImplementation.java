@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OrderServiceImplementation  implements OrderService {
+public class OrderServiceImplementation implements OrderService {
 
     private CartRepository cartRepository;
     private CartService cartService;
@@ -22,13 +22,12 @@ public class OrderServiceImplementation  implements OrderService {
     private ProductService productService;
 
 
-
-    public OrderServiceImplementation(CartRepository cartRepository, CartService cartService, ProductService productService ){
+    public OrderServiceImplementation(CartRepository cartRepository, CartService cartService, ProductService productService) {
 
 
         this.cartService = cartService;
-        this.cartRepository=cartRepository;
-        this.productService=productService;
+        this.cartRepository = cartRepository;
+        this.productService = productService;
     }
 
 

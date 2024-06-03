@@ -25,17 +25,14 @@ public class CartController {
     private UserService userService;
 
 
-
     @GetMapping("/")
-    public ResponseEntity<Cart>findUserCart(@RequestHeader("Authorization")String jwt)throws UserException{
+    public ResponseEntity<Cart> findUserCart(@RequestHeader("Authorization") String jwt) throws UserException {
 
-        User user =userService.findUserProfileByJwt(jwt);
-        Cart cart=cartService.findUserCart(user.getId());
+        User user = userService.findUserProfileByJwt(jwt);
+        Cart cart = cartService.findUserCart(user.getId());
 
         return new ResponseEntity<Cart>(cart, HttpStatus.OK);
     }
-
-
 
 
 //    @PostMapping("/add")

@@ -30,9 +30,7 @@ public class OrderItem {
     private int quantity;
 
 
-
     private Integer price;
-
 
 
     private Integer discountedPrice;
@@ -44,10 +42,7 @@ public class OrderItem {
     private LocalDateTime deliveryDate;
 
 
-
-
-
-    public OrderItem(){
+    public OrderItem() {
 
     }
 

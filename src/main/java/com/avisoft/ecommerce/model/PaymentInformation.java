@@ -5,7 +5,7 @@ import jakarta.persistence.Column;
 import java.time.LocalDate;
 
 public class PaymentInformation {
-    @Column(name="cardholder_name")
+    @Column(name = "cardholder_name")
     private String cardHolderName;
 
     @Column(name = "card_number")
@@ -16,7 +16,6 @@ public class PaymentInformation {
 
     @Column(name = "cvv")
     private String cvv;
-
 
 
 }

@@ -28,20 +28,20 @@ public class ReviewController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<Review>createReview(@RequestBody ReviewRequest req,
-                                              @RequestHeader("Authorization")String jwt)throws UserException, ProductException{
-        User user=userService.findUserProfileByJwt(jwt);
-        Review review=reviewService.createReview(req,user);
+    public ResponseEntity<Review> createReview(@RequestBody ReviewRequest req,
+                                               @RequestHeader("Authorization") String jwt) throws UserException, ProductException {
+        User user = userService.findUserProfileByJwt(jwt);
+        Review review = reviewService.createReview(req, user);
 
         return new ResponseEntity<>(review, HttpStatus.CREATED);
     }
 
 
     @GetMapping("/product/{productId}")
-    public ResponseEntity<List<Review>>getProductReview(@PathVariable Long productId)throws UserException,ProductException{
+    public ResponseEntity<List<Review>> getProductReview(@PathVariable Long productId) throws UserException, ProductException {
 
-        List<Review>reviews=reviewService.getAllReview(productId);
-        return new ResponseEntity<>(reviews,HttpStatus.ACCEPTED);
+        List<Review> reviews = reviewService.getAllReview(productId);
+        return new ResponseEntity<>(reviews, HttpStatus.ACCEPTED);
     }
 }
 

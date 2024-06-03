@@ -2,7 +2,7 @@ package com.avisoft.ecommerce.model;
 
 public class PaymentDetails {
 
-    private String  paymentMethod;
+    private String paymentMethod;
     private String status;
     private String paymentId;
     private String razorpayPaymentLinkId;
@@ -11,7 +11,7 @@ public class PaymentDetails {
     private String razorpayPaymentId;
 
 
-    public PaymentDetails(){
+    public PaymentDetails() {
 
     }
 

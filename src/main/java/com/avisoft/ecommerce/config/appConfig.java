@@ -20,15 +20,15 @@ import java.util.Collections;
 @Configuration
 public class appConfig {
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeHttpRequests(Authorize->Authorize.requestMatchers("/api/**").authenticated().anyRequest().permitAll())
+                .authorizeHttpRequests(Authorize -> Authorize.requestMatchers("/api/**").authenticated().anyRequest().permitAll())
                 .addFilterBefore(new JwtValidator(), BasicAuthenticationFilter.class)
                 .csrf().disable()
                 .cors().configurationSource(new CorsConfigurationSource() {
                     @Override
                     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-                        CorsConfiguration cfg=new CorsConfiguration();
+                        CorsConfiguration cfg = new CorsConfiguration();
                         cfg.setAllowedOrigins(Arrays.asList(
                                 "http://localhost:3000",
                                 "http://localhost:4200",
@@ -43,12 +43,12 @@ public class appConfig {
                         return cfg;
                     }
                 })
-        .and().httpBasic().and().formLogin();
+                .and().httpBasic().and().formLogin();
         return http.build();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

@@ -26,9 +26,9 @@ public class AdminProductController {
 
 
     @PostMapping("/")
-    public ResponseEntity<Product>createProduct(@RequestBody CreateProductRequest req){
+    public ResponseEntity<Product> createProduct(@RequestBody CreateProductRequest req) {
         System.out.println("safsfsaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        Product product=productService.createProduct(req);
+        Product product = productService.createProduct(req);
         System.out.println("safsfsaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         return new ResponseEntity<Product>(product, HttpStatus.CREATED);
     }
@@ -53,14 +53,12 @@ public class AdminProductController {
 //    }
 
 
-
-
     @PutMapping("/{productId}/update")
-    public ResponseEntity<Product>updateProduct(@RequestBody Product req,
-                                                @PathVariable Long productId)throws ProductException{
-        Product product =productService.updateProduct(productId,req);
+    public ResponseEntity<Product> updateProduct(@RequestBody Product req,
+                                                 @PathVariable Long productId) throws ProductException {
+        Product product = productService.updateProduct(productId, req);
 
-        return new ResponseEntity<Product>(product,HttpStatus.CREATED);
+        return new ResponseEntity<Product>(product, HttpStatus.CREATED);
     }
 
 

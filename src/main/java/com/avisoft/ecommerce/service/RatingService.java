@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-public interface RatingService  {
+public interface RatingService {
 
-    public Rating createRating(RatingRequest req, User user)throws ProductException;
+    public Rating createRating(RatingRequest req, User user) throws ProductException;
 
-    public List<Rating>getProductRating(Long productId);
+    public List<Rating> getProductRating(Long productId);
 
 
 }

@@ -19,17 +19,17 @@ public class RatingServiceImplementation implements RatingService {
     private RatingRepository ratingRepository;
     private ProductService productService;
 
-    public RatingServiceImplementation(RatingRepository ratingRepository,ProductService productService ){
+    public RatingServiceImplementation(RatingRepository ratingRepository, ProductService productService) {
 
-        this.productService=productService;
-        this.ratingRepository=ratingRepository;
+        this.productService = productService;
+        this.ratingRepository = ratingRepository;
     }
 
     @Override
     public Rating createRating(RatingRequest req, User user) throws ProductException {
-        Product product=productService.findProductById(req.getProductId());
+        Product product = productService.findProductById(req.getProductId());
 
-        Rating rating=new Rating();
+        Rating rating = new Rating();
         rating.setProduct(product);
         rating.setUser(user);
         rating.setRating(req.getRating());

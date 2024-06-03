@@ -34,8 +34,7 @@ public class CartItem {
     private Long userId;
 
 
-
-    public CartItem(){
+    public CartItem() {
 
     }
 

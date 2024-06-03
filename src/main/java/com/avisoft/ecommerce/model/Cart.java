@@ -15,21 +15,20 @@ public class Cart {
 
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     @Column(name = "cart_items")
-    private Set<CartItem>cartItems=new HashSet<>();
+    private Set<CartItem> cartItems = new HashSet<>();
 
 
     @Column(name = "total_price")
     private double totalPrice;
 
-    @Column(name="total_item")
+    @Column(name = "total_item")
     private int totalItem;
-
 
 
     private int totalDiscountedPrice;
@@ -37,8 +36,7 @@ public class Cart {
     private int discounte;
 
 
-
-    public Cart(){
+    public Cart() {
 
     }
 

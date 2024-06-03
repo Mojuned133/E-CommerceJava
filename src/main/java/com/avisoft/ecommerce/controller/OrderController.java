@@ -27,40 +27,38 @@ public class OrderController {
     private UserService userService;
 
 
-    public ResponseEntity<Order>createOrder(@RequestBody Address shippingAddress, @RequestHeader("Authorization")String jwt)throws UserException{
+    public ResponseEntity<Order> createOrder(@RequestBody Address shippingAddress, @RequestHeader("Authorization") String jwt) throws UserException {
 
-        User user= userService.findUserProfileByJwt(jwt);
+        User user = userService.findUserProfileByJwt(jwt);
 
-        Order order=orderService.createOrder(user,shippingAddress);
+        Order order = orderService.createOrder(user, shippingAddress);
 
-        System.out.println("order"+order);
+        System.out.println("order" + order);
 
         return new ResponseEntity<Order>(order, HttpStatus.CREATED);
     }
 
 
     @GetMapping("/user")
-    public ResponseEntity<List<Order>>usersOrderHistory(@RequestHeader("Authorization") String jwt)throws UserException{
+    public ResponseEntity<List<Order>> usersOrderHistory(@RequestHeader("Authorization") String jwt) throws UserException {
 
-        User user=userService.findUserProfileByJwt(jwt);
-        List<Order>orders=orderService.usersOrderHistory(user.getId());
+        User user = userService.findUserProfileByJwt(jwt);
+        List<Order> orders = orderService.usersOrderHistory(user.getId());
 
-        return new ResponseEntity<>(orders,HttpStatus.CREATED);
+        return new ResponseEntity<>(orders, HttpStatus.CREATED);
     }
 
 
     @GetMapping("/{Id}")
-    public ResponseEntity<Order>findOrderById(
+    public ResponseEntity<Order> findOrderById(
             @PathVariable("Id") Long orderId,
-            @RequestHeader("Authorization") String jwt)throws UserException, OrderException{
+            @RequestHeader("Authorization") String jwt) throws UserException, OrderException {
 
-        User user= userService.findUserProfileByJwt(jwt);
-        Order order= orderService.findOrderById(orderId);
+        User user = userService.findUserProfileByJwt(jwt);
+        Order order = orderService.findOrderById(orderId);
 
         return new ResponseEntity<>(order, HttpStatus.ACCEPTED);
     }
-
-
 
 
 }
