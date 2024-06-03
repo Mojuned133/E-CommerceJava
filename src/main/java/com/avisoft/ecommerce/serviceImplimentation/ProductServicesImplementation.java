@@ -8,6 +8,7 @@ import com.avisoft.ecommerce.repository.ProductRepository;
 import com.avisoft.ecommerce.request.CreateProductRequest;
 import com.avisoft.ecommerce.service.ProductService;
 import com.avisoft.ecommerce.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -22,15 +23,18 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServicesImplementation implements ProductService {
 
+    @Autowired
     private ProductRepository productRepository;
-    private UserService userService;
+//    private UserService userService;
+
+    @Autowired
     private CategoryRepository categoryRepository;
 
+
     public ProductServicesImplementation(ProductRepository productRepository,
-                                         UserService userService,
                                          CategoryRepository categoryRepository){
         this.productRepository=productRepository;
-        this.userService=userService;
+//        this.userService=userService;
         this.categoryRepository=categoryRepository;
     }
 
@@ -115,7 +119,7 @@ public class ProductServicesImplementation implements ProductService {
         if(opt.isPresent()){
             return opt.get();
         }
-        throw new ProductException("product not foun with id"+id);
+        throw new ProductException("product not found with id"+id);
 
     }
 

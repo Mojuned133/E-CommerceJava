@@ -9,12 +9,12 @@ import jakarta.validation.constraints.Size;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 
-    @NotNull
-    @Size(max = 50)
+//    @Size(max = 50)
+    @NotNull(message = "Category name must not be null")
     private String name;
 
 

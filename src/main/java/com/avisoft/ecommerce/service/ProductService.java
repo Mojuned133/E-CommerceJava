@@ -5,9 +5,12 @@ import com.avisoft.ecommerce.model.Product;
 import com.avisoft.ecommerce.request.CreateProductRequest;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+@Service
 public interface ProductService {
     public Product createProduct(CreateProductRequest req);
 
