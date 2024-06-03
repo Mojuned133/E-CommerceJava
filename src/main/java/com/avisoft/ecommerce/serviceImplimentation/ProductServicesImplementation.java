@@ -25,16 +25,17 @@ public class ProductServicesImplementation implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-//    private UserService userService;
+    private UserService userService;
 
     @Autowired
     private CategoryRepository categoryRepository;
 
 
     public ProductServicesImplementation(ProductRepository productRepository,
+                                         UserService userService,
                                          CategoryRepository categoryRepository){
         this.productRepository=productRepository;
-//        this.userService=userService;
+        this.userService=userService;
         this.categoryRepository=categoryRepository;
     }
 

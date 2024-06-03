@@ -25,7 +25,7 @@ public class AdminProductController {
     private ProductService productService;
 
 
-    @PostMapping("/create")
+    @PostMapping("/")
     public ResponseEntity<Product>createProduct(@RequestBody CreateProductRequest req){
         System.out.println("safsfsaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         Product product=productService.createProduct(req);

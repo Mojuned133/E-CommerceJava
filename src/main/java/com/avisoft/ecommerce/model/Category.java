@@ -14,7 +14,7 @@ public class Category {
 
 
 //    @Size(max = 50)
-    @NotNull(message = "Category name must not be null")
+    @NotNull
     private String name;
 
 
