@@ -6,6 +6,7 @@ import com.avisoft.ecommerce.exception.UserException;
 import com.avisoft.ecommerce.model.Cart;
 import com.avisoft.ecommerce.model.User;
 import com.avisoft.ecommerce.request.AddItemRequest;
+import com.avisoft.ecommerce.responce.ApiResponse;
 import com.avisoft.ecommerce.service.CartService;
 import com.avisoft.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,17 +36,17 @@ public class CartController {
     }
 
 
-//    @PostMapping("/add")
-//    public ResponseEntity<ApiResponse>addItemToCart(@RequestBody AddItemRequest req,
-//                                                    @RequestHeader("Authorization")String jwt)throws UserException, ProductException{
-//        User user=userService.findUserProfileByJwt(jwt);
-//
-//        cartService.addCartItem(user.getId(), req);
-//
-//        ApiResponse res=new ApiResponse();
-//        res.setMessage("item added in cart");
-//        res.setStatus(true);
-//
-//        return new ResponseEntity<>(res,HttpStatus.OK);
-//    }
+    @PostMapping("/add")
+    public ResponseEntity<ApiResponse>addItemToCart(@RequestBody AddItemRequest req,
+                                                    @RequestHeader("Authorization")String jwt)throws UserException, ProductException{
+        User user=userService.findUserProfileByJwt(jwt);
+
+        cartService.addCartItem(user.getId(), req);
+
+        ApiResponse res=new ApiResponse();
+        res.setMessage("item added in cart");
+        res.setStatus(true);
+
+        return new ResponseEntity<>(res,HttpStatus.OK);
+    }
 }

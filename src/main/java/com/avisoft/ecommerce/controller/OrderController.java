@@ -27,6 +27,7 @@ public class OrderController {
     private UserService userService;
 
 
+    @PostMapping("/")
     public ResponseEntity<Order> createOrder(@RequestBody Address shippingAddress, @RequestHeader("Authorization") String jwt) throws UserException {
 
         User user = userService.findUserProfileByJwt(jwt);
@@ -57,7 +58,7 @@ public class OrderController {
         User user = userService.findUserProfileByJwt(jwt);
         Order order = orderService.findOrderById(orderId);
 
-        return new ResponseEntity<>(order, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
 
 

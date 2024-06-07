@@ -2,6 +2,7 @@ package com.avisoft.ecommerce.controller;
 
 import com.avisoft.ecommerce.exception.OrderException;
 import com.avisoft.ecommerce.model.Order;
+import com.avisoft.ecommerce.responce.ApiResponse;
 import com.avisoft.ecommerce.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,17 +55,18 @@ public class AdminOrderController {
     }
 
 
-//    @PostMapping("/{orderId}/delete")
-//    public ResponseEntity<Order>DeleteOrderHandler(@PathVariable Long orderId,
-//                                                   @RequestHeader("Authorization")String jwt)throws OrderException{
-//        orderService.deleteOrder(orderId);
-//
-//        ApiResponse res=new ApiResponse();
-//        res.setMessage("order deleted successfully");
-//        res.setStatus(true);
-//
-//        return new ResponseEntity<>(res, HttpStatus.OK);
-//    }
+    @PostMapping("/{orderId}/delete")
+    public ResponseEntity<ApiResponse> deleteOrderHandler(@PathVariable Long orderId,
+                                                          @RequestHeader("Authorization") String jwt) throws OrderException {
+        orderService.deleteOrder(orderId);
+
+        ApiResponse res = new ApiResponse();
+        res.setMessage("order deleted successfully");
+        res.setStatus(true);
+
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
 
 
 }
